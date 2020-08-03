@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="pin-generator half-width">
+                    <input id="pin-code" class="form-control" type="text">
+                    <button id="generate-pin" class="generate-btn">Generate Pin</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-section half-width">
+                    <input id="pin-input" class="form-control" type="text">
+                    <div class="numbers">
+                        <div class="calc-body">
+                            <div class="calc-button-row">
+                              <div class="button" onclick="number(7)">7</div>
+                              <div class="button" onclick="number(8)">8</div>
+                              <div class="button" onclick="number(9)">9</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div class="button" onclick="number(4)">4</div>
+                              <div class="button" onclick="number(5)">5</div>
+                              <div class="button" onclick="number(6)">6</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div class="button" onclick="number(1)">1</div>
+                              <div class="button" onclick="number(2)">2</div>
+                              <div class="button" onclick="number(3)">3</div>
+                            </div>
+                            <div class="calc-button-row">
+                                <div id="remove-one-digit" class="button"><</div>
+                                <div class="button" onclick="number(0)">0</div>
+                                <div id="clear-all-digit" class="button">C</div>
+                            </div>
+                            <div>
+                                <button id="submit-button" type="submit" class="submit-btn">Submit</button>
+                                <p class="action-left">3 try left</p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="notify-section">
+            <p id="wrong-pin-code" class="notify">❌ Pin Didn't Match, Please try again</p>
+            <p id="right-pin-code" class="notify">✅ Pin Matched... Secret door is opening for you</p>
+        </div>
+    </div>
+    <script>
+        //Hide text
+        const wrongPinCode = document.getElementById("wrong-pin-code");
+        wrongPinCode.style.display="none";
+        const rightPinCode = document.getElementById("right-pin-code");
+        rightPinCode.style.display="none";
+
+        // Generate button even handler
+         const generatePin = document.getElementById("generate-pin");
+         generatePin.addEventListener("click", function() {
+             let generateBtn = Math.round(1000 + Math.random()*9000);
+             document.getElementById("pin-code").value = generateBtn;
+             
+         })
+
+        //Pin Input
+        function number (num){
+            var input = document.getElementById("pin-input");
+            switch (num) {
+                case 1:
+                input.value += "1";
+                    
+                    break;
+            
+                case 2:
+                input.value += "2";
+                    
+                    break;
+            
+                case 3:
+                input.value += "3";
+                    
+                    break;
+                case 4:
+                input.value += "4";
+                    
+                    break;
+                case 5:
+                input.value += "5";
+                    
+                    break;
+                case 6:
+                input.value += "6";
+                    
+                    break;
+                case 7:
+                input.value += "7";
+                    
+                    break;
+                case 8:
+                input.value += "8";
+                    
+                    break;
+                case 9:
+                input.value += "9";
+                    
+                    break;
+                case 0:
+                input.value += "0";
+                    
+                    break;
+                
+            }
+        }
+
+        // Clear all digit
+        var clearAllDigit = document.getElementById("clear-all-digit");
+        clearAllDigit.addEventListener("click", function() {
+            document.getElementById("pin-input").value = "";
+        })
+        
+            
+        // remove one digit from right side 
+        var removeOneDigit = document.getElementById("remove-one-digit");
+        removeOneDigit.addEventListener("click", function(){
+            var input = document.getElementById("pin-input");
+            var i = input.value;
+            if(i.length > 0){
+                i = i.substring(0, i.length-1);
+                input.value = i;
+            }
+        })
+
+        // Pin matching
+        var submitBtn = document.getElementById("submit-button");
+        submitBtn.addEventListener("click", function() {
+            var pinCode = document.getElementById("pin-code").value;
+            var pinInput = document.getElementById("pin-input").value;
+            if (pinCode == '' || pinInput == ''){
+                alert ("please enter 4 digit pin code");
+            }
+
+            else if (pinCode == pinInput){
+               document.getElementById("right-pin-code").style.display="block";
+               document.getElementById("wrong-pin-code").style.display="none";
+
+            }
+
+            else if (pinCode != pinInput){
+                document.getElementById("right-pin-code").style.display="none";
+               document.getElementById("wrong-pin-code").style.display="block";
+
+            }
+        })
+
+        
+
+
+
+            
+            
+            
+        
+
+
+
+    </script>
+</body>
+</html>
