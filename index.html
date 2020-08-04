@@ -37,7 +37,7 @@
                               <div class="button" onclick="number(3)">3</div>
                             </div>
                             <div class="calc-button-row">
-                                <div id="remove-one-digit" class="button"><</div>
+                                <div id="remove-one-by-one-digit" class="button"><</div>
                                 <div class="button" onclick="number(0)">0</div>
                                 <div id="clear-all-digit" class="button">C</div>
                             </div>
@@ -126,9 +126,9 @@
         })
         
             
-        // remove one digit from right side 
-        var removeOneDigit = document.getElementById("remove-one-digit");
-        removeOneDigit.addEventListener("click", function(){
+        // remove one by one digit from right side 
+        var removeOneByOneDigit = document.getElementById("remove-one-by-one-digit");
+        removeOneByOneDigit.addEventListener("click", function(){
             var input = document.getElementById("pin-input");
             var i = input.value;
             if(i.length > 0){
@@ -158,17 +158,6 @@
 
             }
         })
-
-        
-
-
-
-            
-            
-            
-        
-
-
 
     </script>
 </body>
